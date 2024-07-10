@@ -1,0 +1,298 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/base::Layout(~{::section})">
+
+<head>
+
+<meta charset="UTF-8" />
+
+<title>Document</title>
+
+</head>
+
+<body>
+	<section>
+		<div class="card mt-3">
+			<div class="card-body">
+				<h1 class="text-center text-primary">Room Details</h1>
+				<div th:if="${session.message}" th:classappend="${session.message.type}"
+					 class="alert alert-primary text-center" role="alert">
+					<p th:text="${session.message.content}"></p>
+
+					<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+				</div>
+				<div>
+					<!-- Add New Room -->
+<!--					<button class="btn btn-success" type="button"-->
+<!--							data-bs-toggle="modal" data-bs-target="#roomModal">-->
+<!--						<i class="fa-solid fa-plus-square"></i>-->
+<!--					</button>-->
+
+					<!-- Add Room Modal -->
+<!--					<div class="modal fade" id="roomModal" tabindex="-1"-->
+<!--						 aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--						<div-->
+<!--								class="modal-dialog modal-dialog-centered modal-dialog-scrollable">-->
+
+<!--							<div class="modal-content">-->
+<!--								<div class="modal-header">-->
+<!--									<h5 class="modal-title text-primary" id="exampleModalLabel">Add Room</h5>-->
+<!--									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--								</div>-->
+<!--								<div class="modal-body">-->
+<!--									<form th:action="@{/admin/addRoom}" method="post" enctype="multipart/form-data">-->
+
+<!--										<div class="mb-3">-->
+<!--											<label for="roomName" class="form-label"> Room Name</label>-->
+<!--											<input type="text" class="form-control" id="roomName" name="roomName" required>-->
+<!--										</div>-->
+
+<!--										<div class="mb-3">-->
+<!--											<label for="type" class="form-label"> Choose Type</label>-->
+<!--											<select name="type" id="type" class="form-control" onchange="updatePrice()" required>-->
+<!--												<option th:value="null">&#45;&#45;SELECT TYPE&#45;&#45;</option>-->
+<!--												<option th:each="t :${listOfType}" th:value="${t.typeId}"-->
+<!--														th:text="${t.typeName}" th:data-price="${t.price}"></option>-->
+<!--											</select>-->
+<!--										</div>-->
+
+<!--										<div class="mb-3">-->
+<!--											<label for="priceT" class="form-label">Price Per Night</label>-->
+<!--											<input type="number" class="form-control" id="priceT" name="priceT" readonly>-->
+
+<!--										</div>-->
+
+<!--										<div class="mb-3">-->
+<!--											<label for="discount" class="form-label">Discount</label>-->
+<!--											<input type="number" class="form-control" id="discount" name="discount" required>-->
+<!--										</div>-->
+
+<!--										<div class="mb-3">-->
+<!--											<label for="numberAdult" class="form-label">Num Of Adult</label>-->
+<!--											<input type="number" class="form-control" id="numberAdult" name="numberAdult" required>-->
+<!--										</div>-->
+
+<!--										<div class="mb-3">-->
+<!--											<label for="numberChild" class="form-label">Num Of Child</label>-->
+<!--											<input type="number" class="form-control" id="numberChild" name="numberChild" required>-->
+<!--										</div>-->
+
+<!--										<div class="mb-3">-->
+<!--											<label for="status" class="form-label">Status</label>-->
+<!--											&lt;!&ndash;														<input type="text" class="form-control" id="status" name="status" required>&ndash;&gt;-->
+<!--											<select class="form-control" id="status" name="status" required>-->
+<!--												<option value="">&#45;&#45;SELECT STATUS&#45;&#45;</option>-->
+<!--												<option value="Available">Available</option>-->
+<!--												<option value="Booked">Booked</option>-->
+<!--												<option value="Occupied">Occupied</option>-->
+<!--												<option value="Maintenance">Maintenance</option>-->
+
+<!--											</select>-->
+<!--										</div>-->
+
+<!--										<div class="mb-3">-->
+<!--											<label for="describeRoom" class="form-label">Description</label>-->
+<!--											<textarea rows="5" class="form-control" id="describeRoom" name="describeRoom" required></textarea>-->
+<!--										</div>-->
+
+<!--										<div class="mb-3">-->
+<!--											<label for="img" class="form-label">Add Photo</label>-->
+<!--											<input type="file" class="form-control" id="img" name="photo" required>-->
+<!--&lt;!&ndash;											<img th:if="${r.image}" th:src="@{'/image/'+${r.image}}" alt="Current Image" width="100" height="100">&ndash;&gt;-->
+<!--										</div>-->
+
+<!--										<div class="text-center">-->
+
+<!--											<button type="submit" class="btn btn-primary">Submit</button>-->
+<!--										</div>-->
+<!--									</form>-->
+
+<!--								</div>-->
+<!--								<div class="modal-footer">-->
+<!--									<button type="button" class="btn btn-secondary"-->
+<!--											data-bs-dismiss="modal">Close</button>-->
+
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+				</div>
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Room Name</th>
+							<th scope="col">Image</th>
+							<th scope="col">Type Room</th>
+							<th scope="col">Num Of Adult</th>
+							<th scope="col">Num Of Child</th>
+							<th scope="col">Price</th>
+							<th scope="col">Discount</th>
+							<th scope="col">Describe</th>
+							<th scope="col">Status</th>
+							<th scope="col">Action</th>
+						</tr>
+						</thead>
+						<tbody>
+<!--						<tr th:each="r : ${getAllRoom}">-->
+						<tr th:each="r : ${listOfRoom}">
+							<!-- <th scope="row">1</th> -->
+							<td th:text="${r.roomId}"></td>
+							<td th:text="${r.roomName}"></td>
+							<td><img style="height: 100px; width: 100px;" th:src="@{'/image/'+${r.image}}"></td>
+							<td class="text-center" th:if="${r.type != null}">
+								<div th:each="t :${r.type}">
+									<h6 th:text="${t.typeName}"></h6>
+								</div>
+							</td>
+							<td th:text="${r.numberAdult}"></td>
+							<td th:text="${r.numberChild}"></td>
+							<td class="text-center" th:if="${r.type != null}">
+								<div th:each="t :${r.type}">
+									<h6 th:text="${t.price}"></h6>
+								</div>
+							</td>
+							<td th:text="${r.discount}"></td>
+							<td class="col-xs-2" th:text="${r.describeRoom}"></td>
+							<td th:text="${r.status}"></td>
+							<td>
+								<!-- Edit Room -->
+								<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+										th:attr="data-bs-target='#offcanvasRight'+${r.roomId}"
+										aria-controls="offcanvasRight">
+									<i class="fa-solid fa-pen-to-square"></i>
+								</button> <br>
+
+								<div class="offcanvas offcanvas-end" tabindex="-1"
+									 th:id="offcanvasRight+${r.roomId}"
+									 aria-labelledby="offcanvasRightLabel">
+									<div class="offcanvas-header text-center">
+										<h5 class="text-primary  fs-3 text-center"
+											id="offcanvasRightLabel">Edit Room Details</h5>
+										<button type="button" class="btn-close text-reset"
+												data-bs-dismiss="offcanvas" aria-label="Close"></button>
+									</div>
+									<div class="offcanvas-body">
+
+										<form th:action="@{/admin/editRoom}" method="post" enctype="multipart/form-data">
+
+											<input type="hidden" name="roomId" th:value="${r.roomId}" />
+
+											<div class="mb-3">
+												<label for="roomName" class="form-label"> Room Name</label>
+												<input type="text" class="form-control" id="roomName" th:value="${r.roomName}" name="roomName" required>
+											</div>
+
+											<div class="mb-3">
+												<label for="type" class="form-label"> Choose Type</label>
+												<select name="type" id="type" class="form-control" onchange="updatePrice()">
+													<option th:text="${r.type.typeName}"></option>
+													<option th:each="t : ${listOfType}"
+															th:value="${t.typeId}"
+															th:text="${t.typeName}" th:data-price="${t.price}"></option>
+												</select>
+											</div>
+
+											<div class="mb-3">
+												<label for="priceT" class="form-label">Price Per Night</label>
+												<input type="number" class="form-control" id="priceT" name="priceT" th:value="${r.type.price}" disabled>
+											</div>
+
+											<div class="mb-3">
+												<label for="discount" class="form-label">Discount</label>
+												<input type="number" th:value="${r.discount}" class="form-control" id="discount" name="discount" required>
+											</div>
+
+											<div class="mb-3">
+												<label for="numberAdult" class="form-label">Num Of Adult</label>
+												<input type="number" class="form-control" id="numberAdult" th:value="${r.numberAdult}" name="numberAdult" required>
+											</div>
+
+											<div class="mb-3">
+												<label for="numberChild" class="form-label">Num Of Child</label>
+												<input type="number" class="form-control" th:value="${r.numberChild}" id="numberChild" name="numberChild" required>
+											</div>
+
+											<div class="mb-3">
+												<label for="status" class="form-label">Status</label>
+												<select class="form-control" id="status" name="status" required>
+													<option value="Available" th:selected="${r.status == 'Available'}">Available</option>
+													<option value="Booked" th:selected="${r.status == 'Booked'}">Booked</option>
+													<option value="Occupied" th:selected="${r.status == 'Occupied'}">Occupied</option>
+													<option value="Maintenance" th:selected="${r.status == 'Maintenance'}">Maintenance</option>
+												</select>
+											</div>
+
+											<div class="mb-3">
+												<label for="describeRoom" class="form-label">Describe</label>
+												<textarea rows="5" th:text="${r.describeRoom}" class="form-control" id="describeRoom" name="describeRoom" required></textarea>
+											</div>
+											<div class="mb-3">
+												<label for="img" class="form-label">Add Photo</label>
+												<input type="file" class="form-control" id="img" name="photo" th:value="${r.image}" >
+												<img th:if="${r.image}" th:src="@{'/image/'+${r.image}}" alt="Current Image" width="100" height="100">
+											</div>
+
+											<div class="text-center">
+												<button type="submit" class="btn btn-primary">Submit</button>
+											</div>
+										</form>
+									</div>
+								</div>
+
+								<!-- Delete Room -->
+								<button type="button" th:onclick="|deleteRoom(${r.roomId})|"
+										class=" btn btn-danger mt-2  text-center"><i
+										class="fa-solid fa-trash-can"></i></button>
+
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			   $(document).ready(() => {
+				   $(".item").removeClass("active");
+				   $("#room-manager-link").addClass("actives");
+			   });
+		</script>
+
+		<!--addRoom-->
+		<script>
+			document.addEventListener('DOMContentLoaded', function (){
+				updatePrice();
+				document.getElementById("type").addEventListener("change", updatePrice);
+
+				function updatePrice() {
+					var selectedType = document.getElementById("type").value;
+					var selectedOption = document.querySelector("#type option:checked");
+					var price = selectedOption ? selectedOption.getAttribute("data-price") : "";
+
+					document.getElementById("priceT").value = price;
+
+
+				}
+			});
+
+		</script>
+
+		<!--editRoom-->
+<!--		<script>-->
+<!--			document.addEventListener("DOMContentLoaded", function() {-->
+<!--				editPrice(); // Gọi hàm editPrice() khi trang được tải lần đầu-->
+<!--				document.getElementById("type").addEventListener("change", editPrice); // Gắn sự kiện onchange để gọi hàm editPrice() khi có sự thay đổi-->
+<!--			});-->
+
+<!--			function editPrice() {-->
+<!--				var selectedOption = document.getElementById("type");-->
+<!--				var selectedOptionPrice = selectedOption.options[selectedOption.selectedIndex].getAttribute("data-price");-->
+<!--				document.getElementById("priceT").value = selectedOptionPrice;-->
+<!--			}-->
+<!--		</script>-->
+
+	</section>
+</body>
+</html>

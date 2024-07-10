@@ -1,0 +1,411 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::Layout(~{::section})">
+
+<head>
+
+<meta charset="UTF-8" />
+
+<title>Document</title>
+
+</head>
+<script th:src="@{/js/script.js}"></script>
+<body>
+
+
+
+	<section>
+
+
+		<!-- HEro Secttion -->
+		<div class="container-fluid position-relative p-0 ">
+			<div class="container-fluid bg-primary py-5 mb-5 hero-header">
+				<div class="container py-5">
+					<div class="banner embed-responsive-item ">
+
+
+						<div class="row justify-content-center py-5">
+							<div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
+								<h1 class="display-3 text-white mb-3">Enjoy Your Vacation
+									With us</h1>
+								<p class="fs-4 text-white mb-4">Plan your trip with us and
+									travel around the world with the most affordable packages!</p>
+								<div class="position-relative w-75 mx-auto text-center">
+									<!-- Input box -->
+									<!-- <input type="text" class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" placeholder="eg.londone"> -->
+									<a th:href="@{/signup}">
+										<button type="button"
+											class="btn btn-primary rounded-pill py-2 px-4 position-absolute top-0 end-0  but"
+											style="margin-top: 7px; margin-right: 33%;">Register
+											Now To Book !!</button>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- About Section -->
+
+		<div class="container-xxl py-5">
+			<div class="container">
+				<div class="row g-5">
+					<div class="col-lg-6" style="min-height: 400px;">
+						<div class="position-relative h-100">
+							<img th:src="@{image/1st.jpg}" alt="no" style="object-fit: cover"
+								class="img-fluid position-absolute w-100 h-100">
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<h5 class="section-title bg-white text-start text-primary pe-3"
+							id="about">About us</h5>
+						<h1 class="mb-4">
+							Welcome to <span class="text-primary">Tourist</span>
+						</h1>
+						<p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor
+							diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et
+							lorem et sit.</p>
+						<p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor
+							diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et
+							lorem et sit, sed stet lorem sit clita duo justo magna dolore
+							erat amet</p>
+						<div class="row gy-2 gx-4 mb-4">
+							<div class="col-sm-6">
+								<p class="mb-0">
+									<i class="fa fa-arrow-right text-primary me-2"></i>First Class
+									Flights
+								</p>
+							</div>
+							<div class="col-sm-6">
+								<p class="mb-0">
+									<i class="fa fa-arrow-right text-primary me-2"></i>Handpicked
+									Hotels
+								</p>
+							</div>
+							<div class="col-sm-6">
+								<p class="mb-0">
+									<i class="fa fa-arrow-right text-primary me-2"></i>5 Star
+									Accommodations
+								</p>
+							</div>
+							<div class="col-sm-6">
+								<p class="mb-0">
+									<i class="fa fa-arrow-right text-primary me-2"></i>Latest Model
+									Vehicles
+								</p>
+							</div>
+							<div class="col-sm-6">
+								<p class="mb-0">
+									<i class="fa fa-arrow-right text-primary me-2"></i>150 Premium
+									City Tours
+								</p>
+							</div>
+							<div class="col-sm-6">
+								<p class="mb-0">
+									<i class="fa fa-arrow-right text-primary me-2"></i>24/7 Service
+								</p>
+							</div>
+						</div>
+						<!-- Buutoon -->
+						<div class="btn btn-primary py-3 px-5 mt-2">Read More</div>
+
+						<!-- End Button -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Service Setcion -->
+		<div class="conatiner-xxl py-5 ">
+			<div class="container">
+				<div class="text-center">
+					<h5 class="section-title bg-white text-center text-primary px-3"
+						id="service">Services</h5>
+					<h1 class="mb-5">Our Services</h1>
+				</div>
+				<div class="row g-4">
+
+					<div class="col-lg-3 col-sm-6">
+						<div class="service-item rounded pt-3">
+							<div class="p-4 text-center">
+								<i class="fa fa-3x fa-globe fa-bounce text-primary mb-4 "></i>
+								<h5>WorldWide Toures</h5>
+								<p>aso adsiona; oicjdc;oasicja0dc asjca09scj s caospcaopscm?</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-sm-6">
+						<div class="service-item rounded pt-3">
+							<div class="p-4 text-center">
+								<i class="fa fa-3x fa-hotel fa-bounce text-primary mb-4 "></i>
+								<h5>Hotel Reservation</h5>
+								<p>aso adsiona; oicjdc;oasicja0dc asjca09scj s caospcaopscm?</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-sm-6">
+						<div class="service-item rounded pt-3">
+							<div class="p-4 text-center">
+								<i class="fa fa-3x fa-user fa-bounce text-primary mb-4 "></i>
+								<h5>Travel Guides</h5>
+								<p>aso adsiona; oicjdc;oasicja0dc asjca09scj s caospcaopscm?</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-sm-6">
+						<div class="service-item rounded pt-3">
+							<div class="p-4 text-center">
+								<i class="fa fa-3x fa-cog fa-bounce text-primary mb-4 "></i>
+								<h5>Event Management</h5>
+								<p>aso adsiona; oicjdc;oasicja0dc asjca09scj s caospcaopscm?</p>
+							</div>
+						</div>
+					</div>
+
+
+
+
+				</div>
+			</div>
+		</div>
+		<!-- Destination Section -->
+		<div class="container-xxl py-5 destination">
+			<div class="conatiner">
+				<div class="text-center">
+					<h5 class="section-title bg-white text-center text-primary px-3">
+						Destination</h5>
+					<h1 class="mb-5">Popular Destination</h1>
+				</div>
+				<div class="row g-3">
+					<div class="col-lg-7 col-md-6">
+						<div class="row g-3">
+							<div class="col-lg-12 col-md-12">
+								<a href="" class="d-block position-relative overflow-hidden">
+									<img th:src="@{image/iskon.jpg}" alt="" class="img-fluid">
+									<div
+										class="bg-white text-danger fw-bold position-absolute top-0 start-0 m-3 py-1 px-2">30%OFF</div>
+									<div
+										class="bg-white text-primary fw-bold position-absolute bottom-0 end-0 m-3 py-1 px-2">Iskon
+										Temple</div>
+								</a>
+							</div>
+							<div class="col-lg-6 col-md-12">
+								<a href="" class="d-block position-relative overflow-hidden">
+									<img th:src="@{image/golden.jpg}" alt="" class="img-fluid">
+									<div
+										class="bg-white text-danger fw-bold position-absolute top-0 start-0 m-3 py-1 px-2">50%OFF</div>
+									<div
+										class="bg-white text-primary fw-bold position-absolute bottom-0 end-0 m-3 py-1 px-2">Golden
+										Temple</div>
+								</a>
+							</div>
+							<div class="col-lg-6 col-md-12">
+								<a href="" class="d-block position-relative overflow-hidden">
+									<img th:src="@{image/jgnn.jpg}" alt="" class="img-fluid">
+									<div
+										class="bg-white text-danger fw-bold position-absolute top-0 start-0 m-3 py-1 px-2">25%OFF</div>
+									<div
+										class="bg-white text-primary fw-bold position-absolute bottom-0 end-0 m-3 py-1 px-2">Jagnath
+										Puri</div>
+								</a>
+							</div>
+
+						</div>
+					</div>
+					<div class="col-lg-5 col-md-6" style="min-height: 350px;">
+						<a href="" class="d-block position-relative h-100 overflow-hidden">
+							<img th:src="@{image/kedarn.jpg}" alt=""
+							class="img-fluid position-absolute w-100 h-100"
+							style="object-fit: cover;">
+							<div
+								class="bg-white text-danger fw-bold position-absolute top-0 start-0 m-3 py-1 px-2">20%OFF</div>
+							<div
+								class="bg-white text-primary fw-bold position-absolute bottom-0 end-0 m-3 py-1 px-2">Kedarnath</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Process Start -->
+		<div class="container-xxl py-5">
+			<div class="container">
+				<div class="text-center pb-4 wow fadeInUp" data-wow-delay="0.1s">
+					<h5 class="section-title bg-white text-center text-primary px-3">Process</h5>
+					<h1 class="mb-5">3 Easy Steps</h1>
+				</div>
+				<div class="row gy-5 gx-4 justify-content-center">
+					<div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp"
+						data-wow-delay="0.1s">
+						<div
+							class="position-relative border border-primary pt-5 pb-4 px-4">
+							<div
+								class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle position-absolute top-0 start-50 translate-middle shadow"
+								style="width: 100px; height: 100px;">
+								<i class="fa fa-globe fa-flip fa-3x text-white"></i>
+							</div>
+							<h5 class="mt-4">Choose A Destination</h5>
+							<hr class="w-25 mx-auto bg-primary mb-1">
+							<hr class="w-50 mx-auto bg-primary mt-0">
+							<p class="mb-0">Tempor erat elitr rebum clita dolor diam
+								ipsum sit diam amet diam eos erat ipsum et lorem et sit sed stet
+								lorem sit</p>
+						</div>
+					</div>
+					<div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp"
+						data-wow-delay="0.3s">
+						<div
+							class="position-relative border border-primary pt-5 pb-4 px-4">
+							<div
+								class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle position-absolute top-0 start-50 translate-middle shadow"
+								style="width: 100px; height: 100px;">
+								<i class="fa fa-dollar-sign fa-flip fa-3x text-white"></i>
+							</div>
+							<h5 class="mt-4">Pay Online</h5>
+							<hr class="w-25 mx-auto bg-primary mb-1">
+							<hr class="w-50 mx-auto bg-primary mt-0">
+							<p class="mb-0">Tempor erat elitr rebum clita dolor diam
+								ipsum sit diam amet diam eos erat ipsum et lorem et sit sed stet
+								lorem sit</p>
+						</div>
+					</div>
+					<div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp"
+						data-wow-delay="0.5s">
+						<div
+							class="position-relative border border-primary pt-5 pb-4 px-4">
+							<div
+								class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle position-absolute top-0 start-50 translate-middle shadow"
+								style="width: 100px; height: 100px;">
+								<i class="fa fa-plane fa-flip fa-3x text-white"></i>
+							</div>
+							<h5 class="mt-4">Fly Today</h5>
+							<hr class="w-25 mx-auto bg-primary mb-1">
+							<hr class="w-50 mx-auto bg-primary mt-0">
+							<p class="mb-0">Tempor erat elitr rebum clita dolor diam
+								ipsum sit diam amet diam eos erat ipsum et lorem et sit sed stet
+								lorem sit</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Process Start -->
+		<!-- Team Start -->
+		<div class="container-xxl py-5">
+			<div class="container">
+				<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+					<h6 class="section-title bg-white text-center text-primary px-3">Travel
+						Guide</h6>
+					<h1 class="mb-5">Meet Our Guide</h1>
+				</div>
+				<div class="row g-4">
+					<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+						<div class="team-item">
+							<div class="overflow-hidden">
+								<img class="img-fluid" th:src="@{image/team-1.jpg}" alt="">
+							</div>
+							<div class="position-relative d-flex justify-content-center"
+								style="margin-top: -19px;">
+								<a class="btn btn-square mx-1"
+									th:href="@{https://www.facebook.com/sameer.domale?mibextid=ZbWKwL}"><i
+									class="fab fa-facebook-f"></i></a> <a class="btn btn-square mx-1"
+									th:href="@{https://twitter.com/Sameer27733760?t=BXBiw7UZpJVuPy044e5aKQ&s=09}"><i
+									class="fab fa-twitter"></i></a> <a class="btn btn-square mx-1"
+									th:href="@{https://instagram.com/sameer_domale__sd?igshid=ZDdkNTZiNTM=}"><i
+									class="fab fa-instagram"></i></a>
+							</div>
+							<div class="text-center p-4">
+								<h5 class="mb-0">Full Name</h5>
+								<small>Designation</small>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+						<div class="team-item">
+							<div class="overflow-hidden">
+								<img class="img-fluid" th:src="@{image/team-2.jpg}" alt="">
+							</div>
+							<div class="position-relative d-flex justify-content-center"
+								style="margin-top: -19px;">
+								<a class="btn btn-square mx-1"
+									th:href="@{https://www.facebook.com/sameer.domale?mibextid=ZbWKwL}"><i
+									class="fab fa-facebook-f"></i></a> <a class="btn btn-square mx-1"
+									th:href="@{https://twitter.com/Sameer27733760?t=BXBiw7UZpJVuPy044e5aKQ&s=09}"><i
+									class="fab fa-twitter"></i></a> <a class="btn btn-square mx-1"
+									th:href="@{https://instagram.com/sameer_domale__sd?igshid=ZDdkNTZiNTM=}"><i
+									class="fab fa-instagram"></i></a>
+							</div>
+							<div class="text-center p-4">
+								<h5 class="mb-0">Full Name</h5>
+								<small>Designation</small>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+						<div class="team-item">
+							<div class="overflow-hidden">
+								<img class="img-fluid" th:src="@{image/team-3.jpg}" alt="">
+							</div>
+							<div class="position-relative d-flex justify-content-center"
+								style="margin-top: -19px;">
+								<a class="btn btn-square mx-1"
+									th:href="@{https://www.facebook.com/sameer.domale?mibextid=ZbWKwL}"><i
+									class="fab fa-facebook-f"></i></a> <a class="btn btn-square mx-1"
+									th:href="@{https://twitter.com/Sameer27733760?t=BXBiw7UZpJVuPy044e5aKQ&s=09}"><i
+									class="fab fa-twitter"></i></a> <a class="btn btn-square mx-1"
+									th:href="@{https://instagram.com/sameer_domale__sd?igshid=ZDdkNTZiNTM=}"><i
+									class="fab fa-instagram"></i></a>
+							</div>
+							<div class="text-center p-4">
+								<h5 class="mb-0">Full Name</h5>
+								<small>Designation</small>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+						<div class="team-item">
+							<div class="overflow-hidden">
+								<img class="img-fluid" th:src="@{image/team-4.jpg}" alt="">
+							</div>
+							<div class="position-relative d-flex justify-content-center"
+								style="margin-top: -19px;">
+								<a class="btn btn-square mx-1"
+									th:href="@{https://www.facebook.com/sameer.domale?mibextid=ZbWKwL}"><i
+									class="fab fa-facebook-f"></i></a> <a class="btn btn-square mx-1"
+									th:href="@{https://twitter.com/Sameer27733760?t=BXBiw7UZpJVuPy044e5aKQ&s=09}"><i
+									class="fab fa-twitter"></i></a> <a class="btn btn-square mx-1"
+									th:href="@{https://instagram.com/sameer_domale__sd?igshid=ZDdkNTZiNTM=}"><i
+									class="fab fa-instagram"></i></a>
+							</div>
+							<div class="text-center p-4">
+								<h5 class="mb-0">Full Name</h5>
+								<small>Designation</small>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Team End -->
+		
+		<!-- Footer End -->
+
+		<script type="text/javascript">
+		
+			   $(document).ready(() => {
+				   $(".item").removeClass("active");
+				   $("#home").addClass("active");
+			   });
+			   
+		
+			</script>
+
+	</section>
+
+
+
+	</section>
+
+
+
+</body>
+
+</html>

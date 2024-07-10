@@ -1,0 +1,1029 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:fragment="Layout(content)">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+
+
+<link
+	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+	rel="stylesheet" />
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<!-- Link Of Css File -->
+<link rel="stylesheet" type="text/css" th:href="@{/cs/style.css}">
+<!-- Link JS File -->
+
+
+<script th:src="@{/js/script.js}"></script>
+<!-- link of fontawesome -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+	integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<!-- Link booticon -->
+
+<link
+	href="
+https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.min.css
+"
+	rel="stylesheet">
+
+<!-- Google Web Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap"
+	rel="stylesheet">
+
+<!-- Jquery  -->
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+	integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Title Of All -->
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<title th:text="${title}"></title>
+</head>
+
+<body>
+
+	<!-- navabar -->
+
+	<nav id="na" class="navbar navbar-expand-lg navbar-light px-7 px-lg-5 py-3 py-lg-0 mb-5">
+		<h1 class="text-primary m-0 ">
+			<a href="" class="navbar-brand p-0 fs-1 " style="color: #86b817;">
+				<i class="fa fa-map-marker-alt fa-bounce me-3"></i>Sunrise's Hotel
+			</a>
+		</h1>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#navbarCollapse">
+			<span class="fa fa-bars text-white"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<div class="navbar-nav ms-auto py-0">
+<!--				<a id="flight" th:href="@{/user/flight}" class="nav-item nav-link item">-->
+<!--					<i class="fa fa-plane-departure"></i>-->
+<!--					Flight-->
+<!--				</a>-->
+<!--				<a id="train" th:href="@{/user/train}" class="nav-item nav-link item">-->
+<!--					<i class="fa fa-train-subway"></i>-->
+<!--					Train-->
+<!--				</a>-->
+
+<!--				<a id="bus" th:href="@{/user/bus}" class="nav-item nav-link item">-->
+<!--					<i class="fa fa-bus"></i>-->
+<!--					Bus-->
+<!--				</a>-->
+<!--				<a id="package" th:href="@{/user/index}" class="nav-item nav-link item ">-->
+<!--					<i class="fa fa-briefcase "></i>-->
+<!--					Holiday Package-->
+<!--				</a>-->
+<!--				<a id="hotel" th:href="@{/user/hotel}" class="nav-item nav-link  item ">-->
+<!--					<i class="fa fa-hotel"></i>-->
+<!--					Hotel-->
+<!--				</a>-->
+
+				<a id="room" th:href="@{/user/index}" class="nav-item nav-link  item ">
+					<i class="fa fa-hotel"></i> Room
+				</a>
+				<a id="booking" th:href="@{/user/booking}" class="nav-item nav-link item ">
+					<i class="fa fa-briefcase "></i> Booking
+				</a>
+
+			</div>
+			<div class="dropdown">
+
+				<button class="dropbtn btn btn-success rounded-pill py-2 px-4"
+					th:text="${'Hi ,'+user.name}"></button>
+
+				<div class="dropdown-content">
+
+					<!-- <p>you are viewing your personal profile</p>-->
+
+					<button type="button" class="btn btn-white" data-bs-toggle="modal"
+						data-bs-target="#exampleModal">
+						<i class="fa-solid fa-user"></i> &ensp;My Profile
+					</button>
+
+					<!-- Default dropstart button -->
+<!--					<div class="btn-group dropstart">-->
+<!--						<button type="button" class="btn btn-light dropdown-toggle"-->
+<!--							data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--							<i class="fa-solid fa-wallet"></i> &ensp;My Booking-->
+<!--						</button>-->
+<!--						<ul class="dropdown-menu">-->
+<!--							&lt;!&ndash; Dropdown menu links &ndash;&gt;-->
+<!--							&lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--							<li class="text-center" data-bs-toggle="modal"-->
+<!--								data-bs-target="#exampleModalBooking"><i-->
+<!--									class="fa fa-briefcase "></i>&ensp;Booking </li>-->
+
+<!--&lt;!&ndash;							<li class="text-center" data-bs-toggle="modal"&ndash;&gt;-->
+<!--&lt;!&ndash;								data-bs-target="#exampleModal22"><i class="fa fa-bus"></i>&ensp;&ndash;&gt;-->
+<!--&lt;!&ndash;								Bus</li>&ndash;&gt;-->
+
+<!--&lt;!&ndash;							<li class="text-center" data-bs-toggle="modal"&ndash;&gt;-->
+<!--&lt;!&ndash;								data-bs-target="#exampleModal23"><i&ndash;&gt;-->
+<!--&lt;!&ndash;								class="fa fa-train-subway"></i>&ensp; Train</li>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;							<li class="text-center" data-bs-toggle="modal"&ndash;&gt;-->
+<!--&lt;!&ndash;								data-bs-target="#exampleModal24"><i&ndash;&gt;-->
+<!--&lt;!&ndash;								class="fa fa-plane-departure"></i>&ensp; Flight</li>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;							<li class="text-center" data-bs-toggle="modal"&ndash;&gt;-->
+<!--&lt;!&ndash;								data-bs-target="#exampleModal25"><i class="fa fa-hotel"></i>&ensp;&ndash;&gt;-->
+<!--&lt;!&ndash;								Hotel</li>&ndash;&gt;-->
+
+<!--&lt;!&ndash;							<li class="text-center" data-bs-toggle="modal"&ndash;&gt;-->
+<!--&lt;!&ndash;								data-bs-target="#exampleModal26"><i&ndash;&gt;-->
+<!--&lt;!&ndash;								class="fa fa-briefcase "></i>&ensp; Holiday-Package</li>&ndash;&gt;-->
+
+<!--						</ul>-->
+<!--					</div>-->
+
+					<button type="button" class="btn btn-white" data-bs-toggle="modal"
+						data-bs-target="#changepasswordModal">
+						<i class="fa-solid fa-key"></i> &ensp;Change Password
+					</button>
+
+					<a th:href="@{/logout}"><i
+						class="fa-solid fa-right-from-bracket"></i> &ensp;Logout
+					</a>
+
+				</div>
+
+			</div>
+
+		</div>
+	</nav>
+
+<!-- Modal Booking -->
+<!--	<div class="modal fade" id="exampleModalBooking" tabindex="-1"-->
+<!--		 aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--		<div class="modal-dialog modal-lg">-->
+<!--			<div class="modal-content">-->
+<!--				<div class="modal-header">-->
+<!--					<h5 class="modal-title" id="exampleModalLabel">Booking Room</h5>-->
+<!--					<button type="button" class="btn-close" data-bs-dismiss="modal"-->
+<!--							aria-label="Close"></button>-->
+<!--				</div>-->
+<!--				<div class="modal-body">-->
+
+<!--					<div class="container mt-5 mb-5" th:each="bb : ${listOfBooking}">-->
+
+<!--						<div class="d-flex justify-content-center row">-->
+
+<!--							<div class="col-md-12 shadow border">-->
+
+<!--								<div class="row bg-white border rounded">-->
+
+<!--									<div class="col-md-2 mt-4 text-center">-->
+
+<!--										<h4 th:text="${bb.room.roomName}">Air India</h4>-->
+<!--&lt;!&ndash;										<p class="fs-6" th:text="${bb.type.typeName}">#abs456</p>&ndash;&gt;-->
+
+<!--									</div>-->
+
+<!--									<div class="col-md-2 mt-4 text-center">-->
+
+<!--										<h4 th:text="${bb.room.typeId}">08:10</h4>-->
+
+<!--&lt;!&ndash;										<p class="text-primary" th:text="${ff.flight.departureCity}">New Delhi</p>&ndash;&gt;-->
+
+<!--									</div>-->
+
+<!--									<div class="col-md-2 mt-4 text-center">-->
+
+<!--										<h5 th:text="${bb.room.numberAdult}" >02h:55m</h5>-->
+
+<!--&lt;!&ndash;										<p th:text="${ff.date}">non-stop</p>&ndash;&gt;-->
+
+<!--									</div>-->
+
+<!--									<div class="col-md-2 mt-4 text-center">-->
+
+<!--										<h4 th:text="${bb.room.numberChild}">10:45</h4>-->
+
+<!--&lt;!&ndash;										<p class="text-primary" th:text="${ff.flight.destinationCity}">Mumbai</p>&ndash;&gt;-->
+
+<!--									</div>-->
+
+<!--									<div class="col-md-2 mt-4 text-center">-->
+
+<!--										<h4 th:text="${bb.room.describeRoom}">10:45</h4>-->
+
+<!--&lt;!&ndash;										<p class="text-primary" th:text="${ff.flight.destinationCity}">Mumbai</p>&ndash;&gt;-->
+
+<!--									</div>-->
+
+<!--									<div-->
+<!--											class="align-items-center align-content-center col-md-2  mt-4 text-center">-->
+
+<!--										<div class="  align-items-center text-center">-->
+
+<!--											<h6 class=" text-center">No.Days Booking</h6>-->
+<!--											<h5 th:text="${bb.numDays}"></h5>-->
+
+
+
+<!--										</div>-->
+
+<!--									</div>-->
+
+<!--									<div class="col-md-2 text-center">-->
+
+<!--										<div class="d-flex flex-column mt-3">-->
+
+
+
+<!--											<button class="btn btn-outline-danger  mt-2" type="button">Cancel</button>-->
+
+
+
+
+
+
+<!--										</div>-->
+
+<!--									</div>-->
+
+<!--								</div>-->
+
+<!--							</div>-->
+
+<!--						</div>-->
+
+
+
+<!--					</div>-->
+
+<!--				</div>-->
+
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
+
+
+	<!-- Repalce The Page With Contect -->
+	<div th:replace="${content}"></div>
+	<!-- Footer Start -->
+	<footer>
+		<div
+			class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn"
+			data-wow-delay="0.1s" id="contact">
+			<div class="container py-5">
+				<div class="row g-5">
+					<div class="col-lg-3 col-md-6">
+						<h4 class="text-white mb-3">Company</h4>
+						<a class="btn btn-link" href="#about">About Us</a> <a
+							class="btn btn-link" href="#contact">Contact Us</a>
+						<!--  <a class="btn btn-link" href="">Privacy Policy</a>
+                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <a class="btn btn-link" href="">FAQs & Help</a> -->
+					</div>
+					<div class="col-lg-3 col-md-6">
+						<h4 class="text-white mb-3">Contact</h4>
+						<p class="mb-2">
+							<i class="fa fa-map-marker-alt me-3"></i>124 HQV
+						</p>
+						<p class="mb-2">
+							<i class="fa fa-phone-alt me-3"></i>+84 983038982
+						</p>
+						<p class="mb-2">
+							<i class="fa fa-envelope me-3"></i>aaa@gmail.com
+						</p>
+						<div class="d-flex pt-2">
+<!--							<a class="btn btn-outline-light btn-social"-->
+<!--								th:href="@{}"><i-->
+<!--								class="fab fa-twitter"></i></a> <a-->
+<!--								class="btn btn-outline-light btn-social"-->
+<!--								th:href="@{}"><i-->
+<!--								class="fab fa-facebook-f"></i></a> <a-->
+<!--								class="btn btn-outline-light btn-social"-->
+<!--								th:href="@{}"><i-->
+<!--								class="fab fa-youtube"></i></a> <a-->
+<!--								class="btn btn-outline-light btn-social"-->
+<!--								th:href="@{}"><i-->
+<!--								class="fab fa-linkedin-in"></i></a>-->
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6">
+						<h4 class="text-white mb-3">Gallery</h4>
+						<div class="row g-2 pt-2">
+
+							<div class="col-4">
+								<img class="img-fluid bg-light p-1" th:src="@{/image/iskon.jpg}"
+									alt="">
+							</div>
+							<div class="col-4">
+								<img class="img-fluid bg-light p-1" th:src="@{/image/temp1.jpg}"
+									alt="">
+							</div>
+							<div class="col-4">
+								<img class="img-fluid bg-light p-1" th:src="@{/image/jgnn.jpg}"
+									alt="">
+							</div>
+
+
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6">
+						<h4 class="text-white mb-3">Newsletter</h4>
+						<p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="copyright">
+					<div class="row">
+						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+							&copy; <a class="border-bottom" href="#">Hotel.com</a>, All Right Reserved. Designed By <a class="border-bottom" href="#">NQA</a>
+						</div>
+						<div class="col-md-6 text-center text-md-end">
+							<div class="footer-menu">
+								<a th:href="@{/user/index}">Home</a>
+								<!--  <a href="">Cookies</a>
+                            <a href="">Help</a>
+                            <a href="">FQAs</a> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Your Profile</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="alert alert-success" th:if="${session.message != null}">
+					<span th:text="${session.message}"></span>
+					<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+				</div>
+				<div class="modal-body" style="background-color: #f4f5f7;">
+					<form th:action="@{/user/update}" method="post">
+					<input type="hidden" name="id" th:value="${user.id}">
+					<div class="row d-flex justify-content-center align-items-center ">
+						<div class=" col-sm-12 mb-4 mb-sm-0 h-100">
+							<div class="card mb-3" style="border-radius: .5rem;">
+								<div class="row g-0">
+									<div class="col-md-4 gradient-custom text-center text-white"
+										style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+										<img
+											src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+											alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+										<h6>Name</h6>
+										<div style="display: flex">
+											<div class="col-md-12">
+												<h5 th:text="${user.name}">Marie Horwitz</h5>
+												<label for="name">Name</label>
+												<input type="text" class="form-control" id="name" name="name" th:value="${user.name}">
+											</div>
+										</div>
+
+									</div>
+									<div class="col-md-8">
+										<div class="card-body p-4">
+											<h6>Information</h6>
+											<hr class="mt-0 mb-4">
+											<div class="row pt-1">
+												<div class="col-12 mb-3">
+													<h6>Email</h6>
+													<div style="display: flex">
+														<div class="col-md-9">
+															<p class="fs-6" th:text="${user.email}">info@example.com</p>
+															<input type="email" class="form-control" id="email" name="email" th:value="${user.email}">
+														</div>
+													</div>
+
+												</div>
+
+												<div class="col-12 mb-3">
+													<h6>Phone</h6>
+													<div style="display: flex">
+														<div class="col-md-9">
+															<p class="text-muted" th:text="${user.mobileno}">123 456 789</p>
+															<input type="tel" class="form-control" id="mobileno" name="mobileno" th:value="${user.mobileno}">
+														</div>
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Change</button>
+					</div>
+					</form>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	<!-- password change modal -->
+	<div class="modal fade" id="changepasswordModal" tabindex="-1"
+		aria-labelledby="exampleModalLabels" aria-hidden="true">
+
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+
+				<div class="modal-header">
+
+					<h5 class="modal-title" id="exampleModalLabel">Change Password
+					</h5>
+
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+
+				</div>
+
+				<div class="modal-body" style="background-color: #f4f5f7;">
+
+
+					<form th:action="@{/user/change}" method="post">
+
+						<!-- Old passWord Field -->
+
+						<div class="mb-3">
+
+							<input type="password" class="form-control"
+								placeholder="Enter Old Password" required name="old">
+
+						</div>
+
+						<!-- New PassWord -->
+
+						<div class="mb-3">
+
+							<input type="password" class="form-control"
+								placeholder="Enter New Password" required name="new">
+
+						</div>
+
+						<div class="container text-center">
+
+							<button type="submit" class="btn btn-success">Change</button>
+
+							<button type="reset" class="btn btn-warning">Reset</button>
+
+						</div>
+
+					</form>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+
+
+	<!-- Modal -->
+<!--	<div class="modal fade" id="exampleModal22" tabindex="-1"-->
+<!--		aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--		<div class="modal-dialog modal-lg">-->
+<!--			<div class="modal-content">-->
+<!--				<div class="modal-header">-->
+<!--					<h5 class="modal-title" id="exampleModalLabel">Booking Bus</h5>-->
+<!--					<button type="button" class="btn-close" data-bs-dismiss="modal"-->
+<!--						aria-label="Close"></button>-->
+<!--				</div>-->
+<!--				<div class="modal-body">-->
+
+<!--					<div class="container mt-5 mb-5" th:each="ff : ${bookingListOfUser}">-->
+
+<!--						<div class="d-flex justify-content-center row">-->
+
+<!--							<div class="col-md-12 shadow border">-->
+
+<!--								<div class="row bg-white border rounded">-->
+
+<!--									<div class="col-md-2 mt-4 text-center">-->
+
+<!--										<h4 th:text="${ff.bus.company}">Air India</h4>-->
+<!--										<p class="fs-6" th:text="${ff.bus.busNo}">#abs456</p>-->
+
+<!--									</div>-->
+
+<!--									<div class="col-md-2 mt-4 text-center">-->
+
+<!--										<h4 th:text="${ff.bus.departureTime}">08:10</h4>-->
+
+<!--										<p class="text-primary" th:text="${ff.bus.departureCity}">New Delhi</p>-->
+
+<!--									</div>-->
+
+<!--									<div class="col-md-2 mt-4 text-center">-->
+
+<!--										<h5 th:text="${ff.bus.totalTime}" >02h:55m</h5>-->
+
+<!--										<p th:text="${ff.date}">non-stop</p>-->
+
+<!--									</div>-->
+
+<!--									<div class="col-md-2 mt-4 text-center">-->
+
+<!--										<h4 th:text="${ff.bus.destinationTime}">10:45</h4>-->
+
+<!--										<p class="text-primary" th:text="${ff.bus.destinationCity}">Mumbai</p>-->
+
+<!--									</div>-->
+
+<!--									<div-->
+<!--										class="align-items-center align-content-center col-md-2  mt-4 text-center">-->
+
+<!--										<div class="  align-items-center text-center">-->
+
+<!--											<h6 class=" text-center">No.Seats Booking</h6>-->
+<!--											<h5 th:text="${ff.noOfSeats}"></h5>-->
+
+
+
+<!--										</div>-->
+
+<!--									</div>-->
+
+<!--									<div class="col-md-2 text-center">-->
+
+<!--										<div class="d-flex flex-column mt-3">-->
+
+
+
+<!--											<button class="btn btn-outline-danger  mt-2" type="button">Cancel</button>-->
+
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
+
+
+	<!-- Modal -->
+<!--	<div class="modal fade" id="exampleModal23" tabindex="-1"-->
+<!--		aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--		<div class="modal-dialog modal-lg">-->
+<!--			<div class="modal-content">-->
+<!--				<div class="modal-header">-->
+<!--					<h5 class="modal-title" id="exampleModalLabel">Booking Train</h5>-->
+<!--					<button type="button" class="btn-close" data-bs-dismiss="modal"-->
+<!--						aria-label="Close"></button>-->
+<!--				</div>-->
+<!--				<div class="modal-body">-->
+
+<!--					<div class="container mt-5 mb-5" th:each="ff : ${userTrainBooking}">-->
+
+<!--						<div class="d-flex justify-content-center row">-->
+
+<!--							<div class="col-md-12 shadow border">-->
+
+<!--								<div class="row bg-white border rounded">-->
+
+<!--									<div class="col-md-2 mt-4 text-center">-->
+
+<!--										<h4 th:text="${ff.train.company}">Air India</h4>-->
+<!--										<p class="fs-6" th:text="${ff.train.trainNo}">#abs456</p>-->
+
+<!--									</div>-->
+
+<!--									<div class="col-md-2 mt-4 text-center">-->
+
+<!--										<h4 th:text="${ff.train.departureTime}">08:10</h4>-->
+
+<!--										<p class="text-primary" th:text="${ff.train.departureCity}">New Delhi</p>-->
+
+<!--									</div>-->
+
+<!--									<div class="col-md-2 mt-4 text-center">-->
+
+<!--										<h5 th:text="${ff.train.totalTime}" >02h:55m</h5>-->
+
+<!--										<p th:text="${ff.date}">non-stop</p>-->
+
+<!--									</div>-->
+
+<!--									<div class="col-md-2 mt-4 text-center">-->
+
+<!--										<h4 th:text="${ff.train.destinationTime}">10:45</h4>-->
+
+<!--										<p class="text-primary" th:text="${ff.train.destinationCity}">Mumbai</p>-->
+
+<!--									</div>-->
+
+<!--									<div-->
+<!--										class="align-items-center align-content-center col-md-2  mt-4 text-center">-->
+
+<!--										<div class="  align-items-center text-center">-->
+
+<!--											<h6 class=" text-center">No.Seats Booking</h6>-->
+<!--											<h5 th:text="${ff.noOfSeats}"></h5>-->
+
+
+
+<!--										</div>-->
+
+<!--									</div>-->
+
+<!--									<div class="col-md-2 text-center">-->
+
+<!--										<div class="d-flex flex-column mt-3">-->
+
+
+
+<!--											<button class="btn btn-outline-danger  mt-2" type="button">Cancel</button>-->
+
+
+
+
+
+
+<!--										</div>-->
+
+<!--									</div>-->
+
+<!--								</div>-->
+
+<!--							</div>-->
+
+<!--						</div>-->
+
+
+
+<!--					</div>-->
+
+
+<!--				</div>-->
+
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
+
+
+	<!-- Modal -->
+<!--	<div class="modal fade" id="exampleModal24" tabindex="-1"-->
+<!--		aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--		<div class="modal-dialog modal-lg">-->
+<!--			<div class="modal-content">-->
+<!--				<div class="modal-header">-->
+<!--					<h5 class="modal-title" id="exampleModalLabel">Booking Flight</h5>-->
+<!--					<button type="button" class="btn-close" data-bs-dismiss="modal"-->
+<!--						aria-label="Close"></button>-->
+<!--				</div>-->
+<!--				<div class="modal-body">-->
+
+<!--					<div class="container mt-5 mb-5" th:each="ff : ${userFlightBooking}">-->
+
+<!--						<div class="d-flex justify-content-center row">-->
+
+<!--							<div class="col-md-12 shadow border">-->
+
+<!--								<div class="row bg-white border rounded">-->
+
+<!--									<div class="col-md-2 mt-4 text-center">-->
+
+<!--										<h4 th:text="${ff.flight.company}">Air India</h4>-->
+<!--										<p class="fs-6" th:text="${ff.flight.flightNo}">#abs456</p>-->
+
+<!--									</div>-->
+
+<!--									<div class="col-md-2 mt-4 text-center">-->
+
+<!--										<h4 th:text="${ff.flight.departureTime}">08:10</h4>-->
+
+<!--										<p class="text-primary" th:text="${ff.flight.departureCity}">New Delhi</p>-->
+
+<!--									</div>-->
+
+<!--									<div class="col-md-2 mt-4 text-center">-->
+
+<!--										<h5 th:text="${ff.flight.totalTime}" >02h:55m</h5>-->
+
+<!--										<p th:text="${ff.date}">non-stop</p>-->
+
+<!--									</div>-->
+
+<!--									<div class="col-md-2 mt-4 text-center">-->
+
+<!--										<h4 th:text="${ff.flight.destinationTime}">10:45</h4>-->
+
+<!--										<p class="text-primary" th:text="${ff.flight.destinationCity}">Mumbai</p>-->
+
+<!--									</div>-->
+
+<!--									<div-->
+<!--										class="align-items-center align-content-center col-md-2  mt-4 text-center">-->
+
+<!--										<div class="  align-items-center text-center">-->
+
+<!--											<h6 class=" text-center">No.Seats Booking</h6>-->
+<!--											<h5 th:text="${ff.noOfSeats}"></h5>-->
+
+
+
+<!--										</div>-->
+
+<!--									</div>-->
+
+<!--									<div class="col-md-2 text-center">-->
+
+<!--										<div class="d-flex flex-column mt-3">-->
+
+
+
+<!--											<button class="btn btn-outline-danger  mt-2" type="button">Cancel</button>-->
+
+
+
+
+
+
+<!--										</div>-->
+
+<!--									</div>-->
+
+<!--								</div>-->
+
+<!--							</div>-->
+
+<!--						</div>-->
+
+
+
+<!--					</div>-->
+
+<!--				</div>-->
+
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
+
+
+	<!-- Modal -->
+<!--	<div class="modal fade" id="exampleModal25" tabindex="-1"-->
+<!--		aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--		<div class="modal-dialog modal-lg">-->
+<!--			<div class="modal-content">-->
+<!--				<div class="modal-header">-->
+<!--					<h5 class="modal-title" id="exampleModalLabel">Booking Hotel</h5>-->
+<!--					<button type="button" class="btn-close" data-bs-dismiss="modal"-->
+<!--						aria-label="Close"></button>-->
+<!--				</div>-->
+<!--				<div class="modal-body">-->
+<!--				-->
+<!--				       <div class="row" >-->
+<!--			-->
+<!--			-->
+
+<!--				<div class="hotels ">-->
+
+<!--					<div class="col-lg-10 offset-md-1 ">-->
+
+<!--						<div class="card mb-4 border-1  shadow">-->
+
+<!--							<div class="row g-0 align-items-center">-->
+
+<!--								<div class="col-md-5 col-ld-9 hot">-->
+
+<!--									<img  class="img-fluid " src="/image/HotelMain2.jpg">-->
+
+<!--									<div class="d-flex border-bottom">-->
+
+<!--										<small class="flex-fill text-center border-end py-2" ><i-->
+<!--											class="fa fa-map-marker-alt text-primary me-2"></i> <small ></small>   </small> <small-->
+<!--											class="flex-fill text-center border-end py-2"><i-->
+<!--											class=" fa fa-tachograph-digital text-primary me-2"></i><small ></small></small> <small-->
+<!--											class="flex-fill text-center py-2"><i-->
+<!--											class="fa fa-user text-primary me-2"></i><small  ></small></small>-->
+
+<!--									</div>-->
+
+<!--								</div>-->
+
+<!--								<div class="col-md-5 px-lg-4 px-md-3 px-0">-->
+
+<!--									<h5 class="mb-3 fs-2 text-danger " >Hotel Name</h5>-->
+
+<!--									<div class="features mb-4">-->
+
+<!--										<h6 class="mb-1">Features</h6>-->
+
+<!--										<span class="badge rounded-pill bg-light text-dark text-wrap" >-->
+
+<!--											 </span> <span-->
+<!--											class="badge rounded-pill bg-light text-dark text-wrap">-->
+
+<!--											1 Bathroom </span> <span-->
+<!--											class="badge rounded-pill bg-light text-dark text-wrap">-->
+
+<!--											1 Balcony </span>-->
+
+<!--									</div>-->
+
+<!--									<div class="Facilities mb-3">-->
+
+<!--										<h6 class="mb-1">Facilities</h6>-->
+
+<!--										<span class="badge rounded-pill bg-light text-dark text-wrap">-->
+
+<!--											Wifi </span> <span-->
+<!--											class="badge rounded-pill bg-light text-dark text-wrap">-->
+
+<!--											Television </span> <span-->
+<!--											class="badge rounded-pill bg-light text-dark text-wrap">-->
+
+<!--											Room Heater </span>-->
+
+<!--									</div>-->
+
+<!--									<div class="guests">-->
+<!--										<div class="mt-2">-->
+
+<!--											<small class="fa fa-star text-primary"></small> <small-->
+<!--												class="fa fa-star text-primary"></small> <small-->
+<!--												class="fa fa-star text-primary"></small> <small-->
+<!--												class="fa fa-star text-primary"></small> <small-->
+<!--												class="fa fa-star text-primary"></small>-->
+
+<!--										</div>-->
+
+
+<!--									</div>-->
+
+<!--								</div>-->
+
+<!--								<div class="col-md-2 mt-lg-0 mt-md-0 mt-4 text-center">-->
+
+<!--									<h4 class="mb-4 " >$2000 </h4>-->
+
+<!--									-->
+
+<!--								<button class="btn btn-outline-danger  mt-2" type="button">Cancel</button>-->
+<!--                                   -->
+
+<!--								-->
+<!--									-->
+<!--								</div>-->
+
+
+
+<!--								</div>-->
+
+<!--							</div>-->
+
+<!--						</div>-->
+
+<!--					</div>-->
+
+<!--				</div>-->
+<!--				-->
+<!--					-->
+<!--			</div>-->
+<!--				-->
+<!--				</div>-->
+
+<!--			</div>-->
+<!--		</div>-->
+<!--	-->
+
+
+
+	<!-- Modal -->
+<!--	<div class="modal fade" id="exampleModal26" tabindex="-1"-->
+<!--		aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--		<div class="modal-dialog modal-lg">-->
+<!--			<div class="modal-content">-->
+<!--				<div class="modal-header">-->
+<!--					<h5 class="modal-title" id="exampleModalLabel">Booking-->
+<!--						Holiday-Package</h5>-->
+<!--					<button type="button" class="btn-close" data-bs-dismiss="modal"-->
+<!--						aria-label="Close"></button>-->
+<!--				</div>-->
+<!--				<div class="modal-body">-->
+<!--				<div class="row  g-4 justify-content-center">-->
+<!--				<div class="col-lg-4 col-md-6 mb-5">-->
+<!--					<div class="package-item">-->
+<!--						<div class="overflow-hidden">-->
+<!--							<img th:src="@{/image/kedarn.jpg}" alt=""-->
+<!--								class="img-fluid img-thumbnail" />-->
+<!--						</div>-->
+<!--						<div class="d-flex border-bottom">-->
+<!--							<small class="flex-fill text-center border-end py-2"> <i-->
+<!--								class="fa fa-map-marker-alt text-primary me-2"></i>Kedarnath-->
+<!--							</small> <small class="flex-fill text-center border-end py-2"> <i-->
+<!--								class="fa fa-calendar-alt text-primary me-2"></i>2 days-->
+<!--							</small> <small class="flex-fill text-center border-end py-2"> <i-->
+<!--								class="fa fa-person-hiking text-primary me-2"></i>2 Activities-->
+<!--							</small>-->
+<!--						</div>-->
+<!--						<div class="text-center p-4">-->
+<!--							<h3 class="mb-0">$ 14 000.00</h3>-->
+<!--							<div class="mb-3">-->
+<!--								<small class="fa fa-star text-primary"></small> <small-->
+<!--									class="fa fa-star text-primary"></small> <small-->
+<!--									class="fa fa-star text-primary"></small> <small-->
+<!--									class="fa fa-star text-primary"></small> <small-->
+<!--									class="fa fa-star text-primary"></small>-->
+<!--							</div>-->
+<!--							-->
+<!--							<div class="d-flex justify-content-center mb-2">-->
+<!--								<a href="" class="btn  btn-primary px"-->
+<!--									>Cancel</a>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
+
+
+
+
+	<!-- JavaScript Libraries -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+	<!-- Libary Requeird Bootstarp -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous">
+		
+	</script>
+<!--	<script th:src="@{/js/script.js}"></script>-->
+
+	<!-- Option 2: Separate Popper and Bootstrap JS -->
+
+	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+		integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+		integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/base::Layout(~{::section})">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <title>Document</title>
+
+</head>
+
+<body>
+
+<section>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            <h1 class="text-center text-primary">Booking Details</h1>
+
+<!--            <div th:if="${session.message}" th:classappend="${session.message.booking}"-->
+<!--                 class="alert alert-primary text-center mt-5" role="alert">-->
+<!--                <p th:text="${session.message.content}"></p>-->
+
+<!--                <th:block th:text="${#session.removeAttribute('message')}"></th:block>-->
+<!--            </div>-->
+            <div>
+                <!-- Add Booking New -->
+                <button class="btn btn-success" type="button"
+                        data-bs-toggle="modal" data-bs-target="#bookingModal">
+                    <i class="fa-solid fa-plus-square"></i>
+                </button>
+
+                 <!--Add Booking Modal-->
+                <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-primary" id="exampleModalLabel">Add New Booking</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <form th:action="@{/admin/addBooking}" method="post">
+                                    <div class="mb-3">
+                                        <label for="user" class="form-label"> Customer Name</label>
+                                        <select name="user" id="user" class="form-control" required>
+                                            <option th:value="null">--SELECT USER--</option>
+                                            <option th:each="u :${listOfUser}" th:value="${u.id}"
+                                                    th:text="${u.name}"></option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="room" class="form-label">Room Name</label>
+                                        <select name="room" id="room" class="form-control" required>
+                                            <option th:value="null">--SELECT ROOM--</option>
+                                            <option th:each="r :${listOfRoom}" th:value="${r.roomId}"
+                                                    th:text="${r.roomName}"></option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="mb-3">
+                                        <label for="checkIn" class="form-label">CheckIn Date</label>
+                                        <input type="text" class="form-control" id="checkIn" name="checkIn" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="checkOut" class="form-label">CheckOut Date</label>
+                                        <input type="text" class="form-control" id="checkOut" name="checkOut" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="bookStatus" class="form-label">Booking Status</label>
+                                        <input type="text" class="form-control" id="bookStatus" name="bookStatus" required>
+                                    </div>
+
+                                    <div class="text-center">
+
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Order_ID</th>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Customer Phone No</th>
+                        <th scope="col">Customer Email</th>
+                        <th scope="col">Room Name</th>
+                        <th scope="col">CheckIn Date</th>
+                        <th scope="col">CheckOut Date</th>
+                        <th scope="col">Booking Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="b, iter : ${allBooking}">
+                        <td th:text="${iter.count}"></td>
+                        <td th:if="b.user != null">
+                            <div th:each="u : ${b.user}">
+                                <h6 th:text="${u.name}"></h6>
+                            </div>
+                        </td>
+                        <td th:if="b.user != null">
+                            <div th:each="u : ${b.user}">
+                                <h6 th:text="${u.mobileno}"></h6>
+                            </div>
+                        </td>
+                        <td th:if="b.user != null">
+                            <div th:each="u : ${b.user}">
+                                <h6 th:text="${u.email}"></h6>
+                            </div>
+                        </td>
+                        <td th:if="b.room != null">
+                            <div th:each="r : ${b.room}">
+                                <h6 th:text="${r.roomName}"></h6>
+                            </div>
+                        </td>
+                        <td th:text="${#dates.format(b.checkIn, 'yyyy-MM-dd')}"></td>
+                        <td th:text="${#dates.format(b.checkOut, 'yyyy-MM-dd')}"></td>
+                        <td th:text="${b.bookStatus}"></td>
+                        <td>
+                            <!-- Edit Booking -->
+                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                                    th:attr="data-bs-target='#offcanvasRight'+${b.bookId}"
+
+                                    aria-controls="offcanvasRight">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button> <br>
+
+                            <div class="offcanvas offcanvas-end" tabindex="-1"
+                                 th:id="offcanvasRight+${b.bookId}" aria-labelledby="offcanvasRightLabel">
+                                <div class="offcanvas-header text-center">
+                                    <h5 class="text-primary  fs-3 text-center" id="offcanvasRightLabel">Edit Booking Details</h5>
+                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <form th:action="@{/admin/editBooking}" method="post">
+                                        <div class="mb-3">
+                                            <label for="bookId" class="form-label">Book ID</label>
+                                            <input type="number" id="bookId" class="form-control" name="bookId" th:value="${b.bookId}" readonly>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="user" class="form-label"> Customer Name</label>
+                                            <select name="user" id="user" class="form-control" required>
+<!--                                                <option th:text="${b.user.name}">&#45;&#45;SELECT USER&#45;&#45;</option>-->
+                                                <option th:each="u :${listOfUser}" th:value="${u.id}"
+                                                        th:text="${u.name}"></option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="room" class="form-label">Room Name</label>
+                                            <select name="room" id="room" class="form-control" required>
+                                                <option th:text="r.roomName">--SELECT ROOM--</option>
+                                                <option th:each="r :${listOfRoom}" th:value="${r.roomId}"
+                                                        th:text="${r.roomName}"></option>
+                                            </select>
+                                        </div>
+
+
+                                        <div class="mb-3">
+                                            <label for="checkIn" class="form-label">CheckIn Date</label>
+                                            <input type="date" th:value="${b.checkIn}" class="form-control" id="checkIn" name="checkIn" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="checkOut" class="form-label">CheckOut Date</label>
+                                            <input type="date" th:value="${b.checkOut}" class="form-control" id="checkOut" name="checkOut" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="bookStatus" class="form-label">Booking Status</label>
+                                            <input type="text" th:value="${b.bookStatus}" class="form-control" id="bookStatus" name="bookStatus" required>
+                                        </div>
+
+                                        <div class="text-center">
+
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Delete Booking -->
+                            <button class="btn btn-danger" type="button"
+                                    th:onclick="|deleteBooking(${b.bookId})|">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+
+                        </td>
+                    </tr>
+                    </tbody>
+<!--                    <tbody>-->
+<!--                    <tr th:each="b : ${allBooking}">-->
+<!--                        &lt;!&ndash; <th scope="row">1</th> &ndash;&gt;-->
+<!--                        <td th:text="${b.bookId}"></td>-->
+<!--                        &lt;!&ndash;                        <td th:text="${b.user.id}"></td>&ndash;&gt;-->
+<!--                        <td th:if="b.user != null">-->
+<!--                            <div th:each="r : ${b.user}">-->
+<!--                                <h6 th:text="${r.id}"></h6>-->
+<!--                            </div>-->
+<!--                        </td>-->
+<!--                        &lt;!&ndash;                        <td th:text="${b.user.name}"></td>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <td th:text="${b.user.mobileno}"></td>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <td th:text="${b.user.email}"></td>&ndash;&gt;-->
+<!--                        <td th:if="b.room != null">-->
+<!--                            <div th:each="r : ${b.room}">-->
+<!--                                <h6 th:text="${r.roomId}"></h6>-->
+<!--                            </div>-->
+<!--                        </td>-->
+<!--                        <td th:text="${b.checkIn}"></td>-->
+<!--                        <td th:text="${b.checkOut}"></td>-->
+<!--                        <td th:text="${b.totalMoney}"></td>-->
+<!--                        <td th:text="${b.bookStatus}"></td>-->
+<!--                    </tr>-->
+
+
+<!--                    </tbody>-->
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(() => {
+            $(".item").removeClass("active");
+            $("#booking-manager-link").addClass("actives");
+        });
+    </script>
+</section>
+</body>
+</html>

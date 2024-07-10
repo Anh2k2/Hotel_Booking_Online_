@@ -1,0 +1,434 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="user/base::Layout(~{::section})">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <title>Document</title>
+
+</head>
+<script th:src="@{/js/script.js}"></script>
+<body>
+
+
+<section style="padding-top: 8%;">
+
+    <div class=" rounded-circle">
+
+        <div class="search1" style="height: 400px;">
+
+            <h1 class="text-white fw-bold"
+                style="font-size: 55px; padding: 7% 0 2% 16%;">Best booking deals anywhere, from anywhere</h1>
+
+        </div>
+
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            <h1 class="text-center text-primary">Booking Details</h1>
+
+            <div th:if="${session.message}" th:classappend="${session.message.type}"
+                 class="alert alert-primary text-center" role="alert">
+                <p th:text="${session.message.content}"></p>
+
+                <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Order_ID</th>
+<!--                        <th scope="col">Customer ID</th>-->
+                        <th scope="col">Customer Name</th>
+<!--                        <th scope="col">Customer Phone No</th>-->
+<!--                        <th scope="col">Customer Email</th>-->
+                        <th scope="col">Room Name</th>
+                        <th scope="col">CheckIn Date</th>
+                        <th scope="col">CheckOut Date</th>
+<!--                        <th scope="col">Booking Price</th>-->
+                        <th scope="col">Booking Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="b, iter : ${getAllBooking}">
+<!--                        <td th:text="${b.bookId}"></td>-->
+                        <td th:text="${iter.count}"></td>
+                        <td th:if="b.user != null">
+                            <div th:each="u : ${b.user}">
+                                 <h6 th:text="${u.name}"></h6>
+                            </div>
+                        </td>
+<!--                        <td th:if="b.user != null">-->
+<!--                            <div th:each="u : ${b.user}">-->
+<!--                                <h6 th:text="${u.moblieno}"></h6>-->
+<!--                            </div>-->
+<!--                        </td>-->
+<!--                        <td th:if="b.user != null">-->
+<!--                            <div th:each="u : ${b.user}">-->
+<!--                                <h6 th:text="${u.email}"></h6>-->
+<!--                            </div>-->
+<!--                        </td>-->
+                        <td th:if="b.room != null">
+                            <div th:each="r : ${b.room}">
+                                <h6 th:text="${r.roomName}"></h6>
+                            </div>
+                        </td>
+                        <td th:text="${b.checkIn}"></td>
+                        <td th:text="${b.checkOut}"></td>
+<!--                        <td th:text="${b.totalMoney}"></td>-->
+                        <td th:text="${b.bookStatus}"></td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- check avilability form-->
+
+<!--    <div class="container availability-form">-->
+
+<!--        <div class="row">-->
+
+<!--            <div class="col-lg-12 bg-dark text-primary shadow p-4 rounded">-->
+
+<!--                <h5 class="col-lg-3">Check Flight Availability</h5>-->
+
+<!--                <form>-->
+
+<!--                    <div class="row align-items-end">-->
+
+<!--                        <div class="col-lg-3 mb-3">-->
+
+<!--                            <label class="form-label" style="font-weight: 500;">From</label>-->
+
+<!--                            <input type="text" class="form-control shadow-none"-->
+<!--                                   placeholder="Departure city">-->
+
+<!--                        </div>-->
+
+<!--                        <div class="col-lg-3 mb-3">-->
+
+<!--                            <label class="form-label" style="font-weight: 500;">To</label> <input-->
+<!--                                type="text" class="form-control shadow-none"-->
+<!--                                placeholder="Destination city">-->
+
+<!--                        </div>-->
+
+<!--                        <div class="col-lg-3 mb-3">-->
+
+<!--                            <label class="form-label" style="font-weight: 500;">Depart</label>-->
+
+<!--                            <input type="date" class="form-control shadow-none">-->
+
+<!--                        </div>-->
+
+<!--                        <div class="col-lg-2 mb-3">-->
+
+<!--                            <label class="form-label" style="font-weight: 500;">Children</label>-->
+
+<!--                            <select class="form-select shadow-none">-->
+
+<!--                                <option value="1">One</option>-->
+
+<!--                                <option value="2">Two</option>-->
+
+<!--                                <option value="3">Three</option>-->
+
+<!--                            </select>-->
+
+<!--                        </div>-->
+
+<!--                        <div class="col-lg-1 mb-lg-3 mt-2">-->
+
+<!--                            <button type="submit"-->
+<!--                                    class="btn btn-primary shadow-none custom-bg">Search</button>-->
+
+<!--                        </div>-->
+
+<!--                    </div>-->
+
+<!--                </form>-->
+
+<!--            </div>-->
+
+<!--        </div>-->
+
+<!--    </div>-->
+
+
+
+<!--    <div class="container mt-5 mb-5" th:each="f : ${flight}">-->
+
+<!--        <div class="d-flex justify-content-center row ">-->
+
+<!--            <div class="col-md-12 shadow border">-->
+
+<!--                <div class="row bg-white border rounded">-->
+
+<!--                    <div class="col-md-2 mt-4 text-center">-->
+
+<!--                        <h4 th:text="${f.company}">Air India</h4>-->
+<!--                        <p class="fs-6" th:text="${f.flightNo}">#abs456</p>-->
+
+<!--                    </div>-->
+
+<!--                    <div class="col-md-2 mt-4 text-center">-->
+
+<!--                        <h4 th:text="${f.departureTime}">08:10</h4>-->
+
+<!--                        <p class="text-primary" th:text="${f.departureCity}">New-->
+<!--                            Delhi</p>-->
+
+<!--                    </div>-->
+
+<!--                    <div class="col-md-2 mt-4 text-center">-->
+
+<!--                        <h5 th:text="${f.totalTime}">02h:55m</h5>-->
+
+<!--                        <p>non-stop</p>-->
+
+<!--                    </div>-->
+
+<!--                    <div class="col-md-2 mt-4 text-center">-->
+
+<!--                        <h4 th:text="${f.destinationTime}">10:45</h4>-->
+
+<!--                        <p class="text-primary" th:text="${f.destinationCity}">Mumbai</p>-->
+
+<!--                    </div>-->
+
+<!--                    <div-->
+<!--                            class="align-items-center align-content-center col-md-2  mt-4 text-center">-->
+
+<!--                        <div class="  align-items-center text-center">-->
+
+<!--                            <h4 class=" text-center" th:text="${'$ '+f.price}">$7,183</h4>-->
+
+
+
+<!--                        </div>-->
+
+<!--                    </div>-->
+
+<!--                    <div class="col-md-2 text-center">-->
+
+<!--                        <div class="d-flex flex-column mt-3">-->
+
+<!--                            <button class="btn btn-primary btn-sm" type="button"-->
+<!--                                    data-bs-toggle="modal" data-bs-target="#flightreadModal"-->
+<!--                                    th:attr="data-bs-target='#hotelreadModal'+${f.fId}">Details</button>-->
+
+<!--                            <button class="btn btn-outline-success btn-sm mt-2"-->
+<!--                                    type="button" data-bs-toggle="offcanvas"-->
+<!--                                    data-bs-target="#offcanvasRight"-->
+<!--                                    th:attr="data-bs-target='#offcanvasRight'+${f.fId}"-->
+<!--                                    aria-controls="offcanvasRight">Book Now</button>-->
+
+
+<!--                            <div class="offcanvas offcanvas-end" tabindex="-1"-->
+<!--                                 th:id="offcanvasRight+${f.fId}"-->
+<!--                                 aria-labelledby="offcanvasRightLabel">-->
+<!--                                <div class="offcanvas-header text-center">-->
+<!--                                    <h5 class="text-primary  fs-2 text-center"-->
+<!--                                        id="offcanvasRightLabel">Book Bus</h5>-->
+<!--                                    <button type="button" class="btn-close text-reset"-->
+<!--                                            data-bs-dismiss="offcanvas" aria-label="Close"></button>-->
+<!--                                </div>-->
+<!--                                <div class="offcanvas-body">-->
+
+<!--                                    <div class="card shadow">-->
+<!--                                        <div class="card-body">-->
+
+<!--                                            <div>-->
+
+<!--                                                <input type="hidden" name="flightId" id="flightId"-->
+<!--                                                       th:value="${f.fId}">-->
+
+
+
+
+
+<!--                                                <div class="mb-3">-->
+<!--                                                    <label for="nu" class="form-label">Name</label> <input-->
+<!--                                                        th:value="${user.name}" type="text" class="form-control"-->
+<!--                                                        id="nu" name="name" readonly>-->
+<!--                                                </div>-->
+
+<!--                                                <div class="mb-3">-->
+<!--                                                    <label for="locaton" class="form-label">Phone No</label> <input-->
+<!--                                                        type="number" th:value="${user.mobileno}"-->
+<!--                                                        class="form-control" id="locaton" name="phoneno" readonly>-->
+<!--                                                </div>-->
+
+<!--                                                <div class="mb-3">-->
+<!--                                                    <label for="pp" class="form-label"> Email </label> <input-->
+<!--                                                        type="email" class="form-control"-->
+<!--                                                        th:value="${user.email}" id="pp" name="email" readonly>-->
+<!--                                                </div>-->
+
+<!--                                                <div class="mb-3">-->
+<!--                                                    <label for="num-two" class="form-label"> Price Per Seat :-->
+<!--                                                    </label> <input id="num-two" th:value="${f.price}" type="number"-->
+<!--                                                                    class="form-control"-->
+<!--                                                                    readonly>-->
+<!--                                                </div>-->
+
+
+<!--                                                <div class="mb-3">-->
+<!--                                                    <label for="num-one" class="form-label"> How Many-->
+<!--                                                        Seat You Want To Book ? </label> <input type="number"-->
+<!--                                                                                                class="form-control" id="num-one" step="0.00000001"-->
+<!--                                                                                                min="0.00000001" name="noOfSeats" required>-->
+<!--                                                </div>-->
+
+
+
+<!--                                                <div class="mb-3">-->
+<!--                                                    <label for="nus" class="form-label">Booking Date</label> <input-->
+<!--                                                        type="date" class="form-control" id="nus" name="date"-->
+<!--                                                        required>-->
+<!--                                                </div>-->
+
+<!--                                                <div>-->
+<!--                                                    <p id="add-sum"-->
+<!--                                                       class=" btn btn-outline-light text-primary fs-4"></p>-->
+<!--                                                </div>-->
+
+<!--                                                <div class="text-center">-->
+
+<!--                                                    <button type="submit" onclick="flightpaymentStart()"-->
+<!--                                                            class="btn btn-success ">BOOK NOW</button>-->
+<!--                                                </div>-->
+
+<!--                                            </div>-->
+
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+
+
+
+
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                        </div>-->
+
+<!--                    </div>-->
+
+<!--                </div>-->
+
+<!--            </div>-->
+
+<!--        </div>-->
+<!--        &lt;!&ndash; Modal &ndash;&gt;-->
+<!--        <div class="modal fade" th:id="hotelreadModal+${f.fId}" tabindex="-1"-->
+<!--             aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--            <div-->
+<!--                    class="modal-dialog modal-dialog-centered modal-dialog-scrollable">-->
+<!--                <div class="modal-content">-->
+<!--                    <div class="modal-header">-->
+<!--                        <h5 class="modal-title text-primary" id="exampleModalLabel">Details</h5>-->
+<!--                        <button type="button" class="btn-close" data-bs-dismiss="modal"-->
+<!--                                aria-label="Close"></button>-->
+<!--                    </div>-->
+<!--                    <div class="modal-body text-center">-->
+
+<!--                        <h6 th:text="${f.details}"></h6>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+
+<!--    </div>-->
+
+<!--    <script type="text/javascript">-->
+
+<!--        $(document).ready(() => {-->
+<!--            $(".items").removeClass("active");-->
+<!--            $("#flight").addClass("active");-->
+<!--        });-->
+
+
+<!--    </script>-->
+
+<!--    <script type="text/javascript">-->
+
+<!--        var numOne = document.getElementById("num-one");-->
+<!--        var numTwo = document.getElementById("num-two");-->
+<!--        var addSum = document. getElementById("add-sum");-->
+
+<!--        numOne.addEventListener("input", add);-->
+<!--        numTwo.addEventListener("input", add);-->
+
+<!--        function add(){-->
+<!--            var one = Number(numOne.value) || 0;-->
+<!--            var two = Number(numTwo.value) || 0;-->
+<!--            var sum = Number(one*two);-->
+<!--            addSum.innerHTML =  sum;-->
+<!--        }-->
+<!--    </script>-->
+
+<!--<script type="text/javascript">-->
+<!--    function bookRoom() {-->
+<!--        // Lấy các giá trị từ các trường nhập liệu trong form-->
+<!--        var id = document.getElementById("id").value;-->
+<!--        var name = document.getElementById("name").value;-->
+<!--        var phone = document.getElementById("phone").value;-->
+<!--        var email = document.getElementById("email").value;-->
+<!--        var roomId = document.getElementById("roomId").value;-->
+<!--        var price = document.getElementById("price").value;-->
+<!--        var checkIn = document.getElementById("checkIn").value;-->
+<!--        var checkOut = document.getElementById("checkOut").value;-->
+
+<!--        // Tạo đối tượng Booking từ các giá trị đã lấy được-->
+<!--        var booking = {-->
+<!--            checkIn: checkIn,-->
+<!--            checkOut: checkOut,-->
+<!--            bookStatus: "WAITING", // Giá trị này có thể cần điều chỉnh tùy theo yêu cầu-->
+<!--            totalMoney: "", // Giá trị này có thể cần điều chỉnh tùy theo yêu cầu-->
+<!--            user: {-->
+<!--                id : id-->
+<!--                // name: name,-->
+<!--                // phone: phone,-->
+<!--                // email: email-->
+<!--            },-->
+<!--            room: {-->
+<!--                roomId: roomId-->
+<!--                // price: price-->
+<!--            }-->
+<!--        };-->
+
+<!--        // Gửi yêu cầu đặt phòng đến backend-->
+<!--        axios.post('/user/addBooking', booking)-->
+<!--            .then(function (response) {-->
+<!--                // Xử lý thành công-->
+<!--                console.log(response.data);-->
+<!--                // Thực hiện các hành động khác sau khi tạo đặt phòng thành công-->
+<!--                // Ví dụ: Hiển thị thông báo, chuyển hướng trang, làm mới danh sách đặt phòng, v.v.-->
+<!--                //window.location.href = '/user/booking';-->
+<!--            })-->
+<!--            .catch(function (error) {-->
+<!--                // Xử lý lỗi-->
+<!--                console.log(error.response.data);-->
+<!--                // Hiển thị thông báo lỗi hoặc thực hiện các hành động khác khi gặp lỗi-->
+<!--            });-->
+<!--    }-->
+
+<!--</script>-->
+</section>
+
+
+</body>
+
+</html>

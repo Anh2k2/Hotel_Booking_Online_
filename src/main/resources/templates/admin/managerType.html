@@ -1,0 +1,167 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/base::Layout(~{::section})">
+
+<head>
+
+<meta charset="UTF-8" />
+
+<title>Document</title>
+
+</head>
+
+<body>
+
+	<section>
+		<div class="card mt-3">
+			<div class="card-body">
+				<h1 class="text-center text-primary">Type Details</h1>
+				<div th:if="${session.message}" th:classappend="${session.message.type}"
+					 class="alert alert-primary text-center mt-5" role="alert">
+					<p th:text="${session.message.content}"></p>
+
+					<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+				</div>
+				<div>
+					<!-- Add Type New -->
+					<button class="btn btn-success" type="button"
+							data-bs-toggle="modal" data-bs-target="#typeModal">
+						<i class="fa-solid fa-plus-square"></i>
+					</button>
+
+					<!-- Add Type Modal -->
+					<div class="modal fade" id="typeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title text-primary" id="exampleModalLabel">Add New Type</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+
+									<form th:action="@{/admin/addType}" method="post">
+										<div class="mb-3">
+											<label for="typeName" class="form-label"> Type Name</label>
+											<input type="text" class="form-control" id="typeNameA" name="typeName" required>
+										</div>
+
+										<div class="mb-3">
+											<label for="capacity" class="form-label">Capacity</label>
+											<input type="number" class="form-control" id="capacityA" name="capacity" required>
+										</div>
+
+										<div class="mb-3">
+											<label for="price" class="form-label">Price</label>
+											<input type="number" class="form-control" id="priceA" name="price" required>
+										</div>
+
+										<div class="mb-3">
+											<label for="describeType" class="form-label">Describe</label>
+											<input type="text" class="form-control" id="describeTypeA" name="describeType" required>
+										</div>
+
+										<div class="text-center">
+
+											<button type="submit" class="btn btn-primary">Submit</button>
+										</div>
+									</form>
+
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+											data-bs-dismiss="modal">Close</button>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Type Name</th>
+							<th scope="col">Capacity</th>
+							<th scope="col">Type Price</th>
+							<th scope="col">Describe</th>
+							<th scope="col">Action</th>
+						</tr>
+						</thead>
+						<tbody>
+<!--							<tr th:each="t : ${getAllTypeDetails}">-->
+							<tr th:each="t : ${listOfType}">
+								<!-- <th scope="row">1</th> -->
+								<td th:text="${t.typeId}"></td>
+								<td th:text="${t.typeName}"></td>
+								<td th:text="${t.capacity}"></td>
+								<td th:text="${t.price}"></td>
+								<td th:text="${t.describeType}"></td>
+								<td>
+									<!-- Edit Type -->
+									<button class="btn btn-primary" type="button"
+											data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+											th:attr="data-bs-target='#offcanvasRight'+${t.typeId}" aria-controls="offcanvasRight">
+										<i class="fa-solid fa-pen-to-square"></i>
+									</button>
+
+									<div class="offcanvas offcanvas-end" tabindex="-1"
+										 th:id="offcanvasRight+${t.typeId}" aria-labelledby="offcanvasRightLabel">
+										<div class="offcanvas-header text-center">
+											<h5 class="text-primary  fs-3 text-center" id="offcanvasRightLabel">Edit Type Details</h5>
+											<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+										</div>
+										<div class="offcanvas-body">
+											<form th:action="@{/admin/editType}" method="post">
+												<input type="hidden" name="typeId" th:value="${t.typeId}" />
+												<div class="mb-3">
+													<label for="typeName" class="form-label">Type Name</label>
+													<input type="text" th:value="${t.typeName}" class="form-control" id="typeName" name="typeName" required>
+												</div>
+
+												<div class="mb-3">
+													<label for="capacity" class="form-label">Capacity</label>
+													<input type="number" th:value="${t.capacity}" class="form-control" id="capacity" name="capacity" required>
+												</div>
+
+												<div class="mb-3">
+													<label for="price" class="form-label">Type Price</label>
+													<input type="number" th:value="${t.price}" class="form-control" id="price" name="price" required>
+												</div>
+
+												<div class="mb-3">
+													<label for="describeType" class="form-label">Describe</label>
+													<input type="text" th:value="${t.describeType}" class="form-control" id="describeType" name="describeType" required>
+												</div>
+												<div class="text-center">
+
+													<button type="submit" class="btn btn-primary">Submit</button>
+												</div>
+											</form>
+										</div>
+									</div>
+
+									<!-- Delete Type -->
+									<button class="btn btn-danger" type="button"
+											th:onclick="|deleteType(${t.typeId})|">
+										<i class="fa-solid fa-trash-can"></i>
+									</button>
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+
+		<script type="text/javascript">
+			   $(document).ready(() => {
+				   $(".item").removeClass("active");
+				   $("#type-manager-link").addClass("actives");
+			   });
+			</script>
+	</section>
+</body>
+</html>

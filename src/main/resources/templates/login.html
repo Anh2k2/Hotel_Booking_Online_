@@ -1,0 +1,109 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::Layout(~{::section})">
+
+<head>
+
+<meta charset="UTF-8" />
+
+<title>Document</title>
+
+</head>
+
+<body>
+
+	<section>
+
+		<div class="h-100 gradient-form bg-white">
+			<div class="container h-100 ">
+				<div
+					class="row d-flex justify-content-center align-items-center h-100">
+					<div class="col-xl-10">
+						<div class=" rounded-3 text-black">
+							<div class="row g-0">
+								<div class="col-lg-6 offset-lg-3 shadow">
+									<div class="card-body p-md-3 mx-md-4">
+
+										<div class="text-center">
+											<img th:src="@{/image/logo.png}" style="width: 400px; height: 200px;" alt="logo">
+											<h4 class="mt-1 mb-5 pb-1 text-primary">Login To Your Account</h4>
+										</div>
+										<div th:if="${session.message}"
+											th:classappend="${session.message.type}"
+											class="alert alert-primary text-center" role="alert">
+											<p th:text="${session.message.content}"></p>
+
+											<th:block th:text="${#session.removeAttribute('message')}">
+											</th:block>
+										</div>
+										<div th:if="${param.error}" class=" alert alert-danger">
+											Invalid username or Password !!</div>
+										<div th:if="${param.logout}" class=" alert alert-success">
+											You have been logged out !</div>
+
+										<form th:action="@{/login}" method="post">
+											<!-- <p>Please login to your account</p>
+ -->
+											<div class="form-outline mb-3">
+												<label class="form-label text-dark" for="form2Example11">Username</label>
+												<input type="email" name="username" id="form2Example11"
+													class="form-control" placeholder="Email address" required />
+											</div>
+
+											<div class="form-outline mb-3">
+												<label class="form-label text-dark" for="form2Example22">Password</label>
+												<input type="password" name="password" id="form2Example22"
+													class="form-control" placeholder="Password" required />
+											</div>
+
+											<div class="text-center pt-1 mb-3 pb-1">
+												<button class="btn btn-lg-primary btn-block  rounded-pill py-2 px-4  fa-lg gradient-custom-2"
+													style="height: 40px; padding-bottom: 10px;" type="submit">Log in</button>
+												<br><a class="text-muted" href="#!">Forgot password?</a>
+											</div>
+
+											<div
+												class="d-flex align-items-center justify-content-center pb-4 text-dark">
+												<p class="mb-0 me-2">Don't have an account?</p>
+												<a th:href="@{/signup}">
+													<button type="button" class="btn btn-outline-danger">Create new</button>
+												</a>
+											</div>
+
+										</form>
+
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<script type="text/javascript">
+		
+			   $(document).ready(() => {
+				   $(".item").removeClass("active");
+				   $("#login").addClass("active");
+			   });
+			   
+		
+			</script>
+
+	</section>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
